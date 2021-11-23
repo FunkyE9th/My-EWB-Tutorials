@@ -43,7 +43,7 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
    - [ ] If the policy was created successfully, you should see the screen below.
 
-     ![CreatPolicy3-edit](..\images\mqtt-aws\CreatPolicy3-edit.PNG)
+     ![CreatPolicy3-edit](../images/mqtt-aws/CreatPolicy3-edit.PNG)
 
      
 
