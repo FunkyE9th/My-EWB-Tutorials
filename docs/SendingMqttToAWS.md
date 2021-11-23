@@ -25,9 +25,9 @@ This tutorial will show you how to send MQTT messages to AWS using Laird Connect
 
 Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as shown below.
 
-   ![](../images/dongle/Setup.PNG)
+   ![](../images/mqtt-aws/Setup.PNG)
 
-   
+  
 
 1. Create a policy
 
@@ -37,13 +37,13 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
    
 
-   - [ ] Create the policy as shown below.
+   - [ ] Create the policy as shown below. This will allow the device to connect and publish MQTT messages.
 
      ![CreatPolicy2-edit](..\images\mqtt-aws\CreatPolicy2-edit.PNG)
 
      
 
-   - [ ] If the policy was create successfully, you should see the screen below.
+   - [ ] If the policy was created successfully, you should see the screen below.
 
      ![CreatPolicy3-edit](..\images\mqtt-aws\CreatPolicy3-edit.PNG)
 
@@ -67,7 +67,7 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
      ![CreatThing3-edit](..\images\mqtt-aws\CreatThing3-edit.PNG)	
 
-   - [ ] Select ***Auto-generate certificates*** and then click ***Next*** 
+   - [ ] Select ***Auto-generate a certificate*** and then click ***Next*** 
 
      ![](..\images\mqtt-aws\CreatThing4-edit.png)
 
