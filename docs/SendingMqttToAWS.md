@@ -39,9 +39,7 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
    - [ ] Create the policy as shown below. This will allow the device to connect and publish MQTT messages.
 
-     ![CreatPolicy2-edit](..\images\mqtt-aws\CreatPolicy2-edit.PNG)
-
-     
+     ![CreatPolicy2-edit](../images/mqtt-aws/CreatPolicy2-edit.PNG)	
 
    - [ ] If the policy was created successfully, you should see the screen below.
 
@@ -53,35 +51,35 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
    - [ ] Navigate to ***Manage->Things*** and then click ***Create things***.
 
-     ![](..\images\mqtt-aws\CreatThing1-edit.PNG)
+     ![](../images/mqtt-aws/CreatThing1-edit.PNG)
 
      
 
    - [ ] Select ***Create single thing*** and then click ***Next***
 
-     ![](..\images\mqtt-aws\CreatThing2-edit.PNG)
+     ![](../images/mqtt-aws/CreatThing2-edit.PNG)
 
      
 
    - [ ] Name the thing as ***MySensor*** and then click ***Next***
 
-     ![CreatThing3-edit](..\images\mqtt-aws\CreatThing3-edit.PNG)	
+     ![CreatThing3-edit](../images/mqtt-aws/CreatThing3-edit.PNG)	
 
    - [ ] Select ***Auto-generate a certificate*** and then click ***Next*** 
 
-     ![](..\images\mqtt-aws\CreatThing4-edit.png)
+     ![](../images/mqtt-aws/CreatThing4-edit.png)
 
      
 
    - [ ] Attach the policy that we created to ***MySensor***, by selecting ***MyPolicy*** and then click ***Create thing***
 
-     ![CreatThing5-edit](..\images\mqtt-aws\CreatThing5-edit.PNG)
+     ![CreatThing5-edit](../images/mqtt-aws/CreatThing5-edit.PNG)
 
      
 
    - [ ] Download the ***MySensor*** certificate, public and private keys, and the Amazon Root CA certificates into the examples folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb).
 
-     ![](C:\GitHub\My-EWB-Tutorials\images\mqtt-aws\CreatThing6-edit.png)
+     ![](../images/mqtt-aws/CreatThing6-edit.png)
 
      
 
@@ -91,7 +89,7 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
    - [ ] ***MySensor*** is now created as shown below
 
-     ![](C:\GitHub\My-EWB-Tutorials\images\mqtt-aws\CreatThing7-edit.png)
+     ![](../images/mqtt-aws/CreatThing7-edit.png)
 
      
 
@@ -105,7 +103,7 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
    - [ ] aaa
 
-     ![CopyHost3-edit](..\images\mqtt-aws\CopyHost3-edit.PNG)
+     ![CopyHost3-edit](../images/mqtt-aws/CopyHost3-edit.PNG)
 
    ```
    BBLAYERS += "${BSPDIR}/sources/meta-laird-cp" 
