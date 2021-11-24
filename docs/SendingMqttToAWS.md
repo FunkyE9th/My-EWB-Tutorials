@@ -15,15 +15,15 @@ This tutorial will show you how to send MQTT messages to AWS using Laird Connect
 
    - You have an AWS account with IoT Core Service.
 
-   - You have PC with Python 3.x.x installed. This demo was done with v3.9.1
+   - You have Windows PC with Python 3.x.x installed. This demo was done with v3.9.1
 
-   - You have downloaded the [Python Samples Apps from our website](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb).
+   - You have downloaded the [ATCommands_SampleApps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb) from our website.
 
      
 
 ## Setup
 
-Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as shown below.
+Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as shown below and then connect the other end of the cable to the your Windows PC. Then using Windows device manager determine the com port for the TTK-232-3V3. For this tutorial we will be using ***COM30***.
 
    ![](../images/mqtt-aws/Setup.PNG)
 
@@ -77,166 +77,66 @@ Supply power to the dev kit via J24 and connect the TTL-232-3V3 cable to J7 as s
 
      
 
-   - [ ] Download the ***MySensor*** certificate, public and private keys, and the Amazon Root CA certificates into the examples folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb).
+   - [ ] Download the ***MySensor*** certificate, public and private keys, and the ***Amazon Root CA certificates*** into the examples folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb).
 
      ![](../images/mqtt-aws/CreatThing6-edit.png)
 
      
 
-     Rename the downloaded MySensor certificate as MySensor.pem.crt. Rename the public key as ***MySensor.public.pem.key***. Rename the private key as ***MySensor.private.pem.key***.
+     Rename the downloaded MySensor certificate as ***MySensor.pem.crt.*** Rename the public key as ***MySensor.public.pem.key***. Rename the private key as ***MySensor.private.pem.key***. 
 
      
 
-   - [ ] ***MySensor*** is now created as shown below
+   - [ ] ***MySensor*** is now created as shown below. Next click ***MySensor***.
 
      ![](../images/mqtt-aws/CreatThing7-edit.png)
 
      
 
-3. Copy hostaname
+3. Copy and save hostname/endpoint into a textfile
 
-   - [ ] aaa
+   - [ ] Select the ***Interact*** tab and then click ***View Settings***
+
+     ![CopyHost1-edit](../images/mqtt-aws/CopyHost2-edit.png)
 
      
 
-   - [ ] aaa
-
-   - [ ] aaa
+   - [ ] Copy the endpoint url and save into a textfile. We will need this later when we run our Python sample scripts.
 
      ![CopyHost3-edit](../images/mqtt-aws/CopyHost3-edit.PNG)
 
-   ```
-   BBLAYERS += "${BSPDIR}/sources/meta-laird-cp" 
-   ```
+   
+
+4. Setup the AWS MQTT Test Client.
+
+   Navigate to ***Test->MQTT test client***. Enter ***#*** on the ***Topic filter***.  Expand ***Additional configuration*** and select ***Display payload as strings***. Then click ***Subscribe***. ***#*** should be added to ***Subscriptions***.
+   
+   ![TestMQTT](../images/mqtt-aws/TestMQTT.png)
+   
+   
+   
+5. Send MQTT messages from the EWB
+
+   - [ ] Open a ***cmd prompt*** on the ***ATCommands_SampleApps*** ***examples*** folder
+
+   - [ ] Connect to an AP using the ***join.py*** script
+
+     ***join.py -u COM30 -s NameOfYourAP -p YouPassphrase***
+
+   - [ ] Load the MySensor certifcate and private key into the EWB with the ***client_cert.py*** script
+
+     ***client_cert.py -u COM30 --cert MySensor.pem.crt --key MySensor.private.pem.key***
+
+   - [ ] Send a message with the mqtt.pw script
+
+     ***mqtt.py -u COM30 -p 8883 --host TheEndPointURLYouCopiedFromStep3 --ssl NoVerifyHost --topic test/topic --body Hello***
+
+     ![CmdPrompt-Edit](../images/mqtt-aws/CmdPrompt-Edit.PNG)
 
    
 
-4. Modify the  *~/projects/imx8mp/build-imx8p-wayland/conf/local.conf* file.  Add the lines below to the file.
+   - [ ] Hello message received on the AWS MQTT Test Client
 
-   ```
-   PREFERRED_PROVIDER_wpa-supplicant = "sterling-supplicant" 
-   PREFERRED_PROVIDER_wpa-supplicant-cli = "sterling-supplicant" 
-   PREFERRED_PROVIDER_wpa-supplicant-passphrase = "sterling-supplicant" 
-   
-   BBMASK += " \ 
-       meta-laird-cp/recipes-packages/openssl \ 
-       meta-laird-cp/recipes-packages/.*/.*openssl10.* \ 
-       "
-   
-   PREFERRED_RPROVIDER_wireless-regdb-static = "wireless-regdb" 
-   LWB_REGDOMAIN = "US" 
-   ```
+     ![](../images/mqtt-aws/MsgReceived.PNG)
 
    
-
-5. Clone the meta-laird-cp layer into *~/projects/imx8mp/sources* directory
-
-   ```
-   cd ~/projects/imx8mp/sources
-   git clone https://github.com/LairdCP/meta-laird-cp
-   ```
-
-   
-
-6. Edit the *~/projects/imx8mp/sources/meta-laird-cp/recipes-packages/images/sample-image-cp-lwb5plus.bb* recipe by replacing *lwb5plus-sdio-div-firmware* with *lwb5plus-usb-sa-firmware* and adding *laird-networkmanager*. Then save it as *mylwb5p.bb*. A snippet of the saved file is shown below.
-
-   ```
-   IMAGE_INSTALL += "\ 
-   iproute2 \ 
-   rng-tools \ 
-   ca-certificates \ 
-   tzdata \ 
-   alsa-utils \ 
-   htop \ 
-   ethtool \ 
-   iperf3 \ 
-   tcpdump \ 
-   iw \ 
-   kernel-module-lwb5p-backports-laird \ 
-   lwb5plus-usb-sa-firmware \ 
-   sterling-supplicant \ 
-   laird-networkmanager \ 
-   " 
-   ```
-
-   
-
-
-7. Next go to the build directory and run menuconfig to configure the Kernel.
-
-   ```
-   cd ../build-imx8p-wayland 
-   bitbake -c menuconfig virtual/kernel
-   
-   ```
-
-   - Disable Wireless LAN drivers. Navigate to *Device Drivers* -> *Network device support* and disable *Wireless LAN* .
-
-     
-
-     ![](../images/dongle/wlan-kernel-setting.PNG)
-
-     
-
-   - Disable Bluetooth subsystem support and Wireless. Navigate to *Networking support* and disable *Bluetooth subsystem* *support* and *Wireless*.
-
-     
-
-     ![](../images/dongle/bt-wireless-kernel-setting.PNG)
-
-     
-     
-   - Save your changes and exit menuconfig
-
-     
-
-8. Build the image
-
-    ```
-    bitbake mylwb5p
-    ```
-
-    
-
-9. Flash image into SD card. **Note:** for this particular tutorial the SD card is on /dev/mmcblk0. It may be different for your setup; so make sure you change the command below per your setup.
-
-    ```
-    bzip2 -dc ~/projects/imx8mp/build-imx8p-wayland/tmp/deploy/images/imx8mpevk/mylwb5p-imx8mpevk.wic.bz2 | sudo dd bs=512K iflag=fullblock oflag=direct status=progress conv=fsync of=/dev/mmcblk0
-    
-    sync
-    ```
-
-    
-
-10. Connect EVK to Serial Terminal via J23 (115200, N, 8, 1). Note for this tutorial we use */dev/ttyUSB2* port to connect. Your Linux PC might use a different port. Boot device and login as root.
-
-    
-
-11. Test Wi-Fi. Create a connection profile with nmcli. Then connect to the AP and ping a website.
-
-     ```
-     nmcli con add con-name "YourProfile" ifname wlan0 type wifi ssid "YourAP" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "YourPassword" 
-     nmcli c u "YourProfile" 
-     ping www.google.com
-     ```
-
-     ![](../images/dongle/ping.png)
-
-     
-
-12. Test Bluetooth. Launch *bluetoothctl*. Then on the *bluetoothctl* prompt, type *power on* and then *scan on*.
-
-     
-
-     ![](../images/dongle/BTScan.png)
-
-     
-
-## References
-
-- https://github.com/LairdCP/meta-laird-cp
-- The modified files on this tutorial
-  - [bblayers.conf](../src/dongle/bblayers.conf)
-  - [local.conf](../src/dongle/local.conf)
-  - [mylwb5p.bb](../src/dongle/mylwb5p.bb)
-- https://www.nxp.com/imx8mplusevk
