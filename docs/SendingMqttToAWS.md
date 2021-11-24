@@ -61,7 +61,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
      
 
-   - [ ] Name the thing as ***MySensor*** and then click ***Next***
+   - [ ] Name the ***Thing*** as ***MySensor*** and then click ***Next***
 
      ![CreatThing3-edit](../images/mqtt-aws/CreatThing3-edit.PNG)	
 
@@ -71,7 +71,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
      
 
-   - [ ] Attach the policy that we created to ***MySensor***, by selecting ***MyPolicy*** and then click ***Create thing***
+   - [ ] Attach the policy that we created to ***MySensor*** by selecting ***MyPolicy*** and then click ***Create thing***
 
      ![CreatThing5-edit](../images/mqtt-aws/CreatThing5-edit.PNG)
 
@@ -121,13 +121,13 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
    - [ ] Connect to an AP using the ***join.py*** script
 
-     ***join.py -u COM30 -s NameOfYourAP -p YouPassphrase***
+     ***join.py -u COM30 -s NameOfYourAP -p YourPassphrase***
 
-   - [ ] Load the MySensor certifcate and private key into the EWB with the ***client_cert.py*** script
+   - [ ] Load the ***MySensor*** certifcate and private key into the EWB with the ***client_cert.py*** script
 
      ***client_cert.py -u COM30 --cert MySensor.pem.crt --key MySensor.private.pem.key***
 
-   - [ ] Send a message with the mqtt.pw script
+   - [ ] Send a message with the ***mqtt.py*** script
 
      ***mqtt.py -u COM30 -p 8883 --host TheEndPointURLYouCopiedFromStep3 --ssl NoVerifyHost --topic test/topic --body Hello***
 
