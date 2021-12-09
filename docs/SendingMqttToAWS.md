@@ -81,7 +81,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
      
 
-   - [ ] Download the ***MySensor*** certificate, public and private keys, and the ***Amazon Root CA certificates*** into the examples folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb).
+   - [ ] Download the ***MySensor*** certificate, public and private keys, and the ***Amazon Root CA certificates*** into the ***examples*** folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb).
 
      ![](../images/mqtt-aws/CreatThing6-edit.png)
 
