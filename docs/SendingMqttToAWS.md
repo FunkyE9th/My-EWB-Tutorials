@@ -15,11 +15,11 @@ This tutorial will show you how to connect the Sterling EWB to an Access Point a
 
    - You have an AWS account with IoT Core Service.
 
-   - You have Windows PC with Python 3.x.x installed. This demo was done with v3.9.1
+   - You have a Windows PC with Python 3.x.x installed. This demo was done with v3.9.1
 
    - You have downloaded the [ATCommands_SampleApps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb) from our website.
 
-   - You have an WiFi access point to connect to the cloud.
+   - You have a WiFi access point to connect to the cloud.
 
      
 
