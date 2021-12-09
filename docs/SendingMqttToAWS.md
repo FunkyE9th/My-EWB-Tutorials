@@ -1,23 +1,25 @@
-# Sending MQTT Messages to AWS
+# Sending MQTT Messages to AWS using AT Command Firmware
 
-This tutorial will show you how to send MQTT messages to AWS using Laird Connectivity's Sterling EWB AT Command Firmware.
+This tutorial will show you how to connect the Sterling EWB to an Access Point and then send MQTT messages to AWS.
 
 ## Required Tools
 
    - [EWB dev kit](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module) (Part No. **455-00030** or **455-00030**)
    - [TTL-2323-3V3](https://ftdichip.com/products/ttl-232r-3v3/) USB to UART Cable
-
-     
+   - Windows PC
+   - WiFi Access Point
 
 ## Prerequisites
 
-   - You have flashed the [AT Command FW](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module#documentation) into the Sterling EWB dev kit. To flash, simply download the FW and run the flash_AT.bat script.
+   - You have flashed the [AT Command FW](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module#documentation) into the Sterling EWB dev kit. 
 
    - You have an AWS account with IoT Core Service.
 
    - You have Windows PC with Python 3.x.x installed. This demo was done with v3.9.1
 
    - You have downloaded the [ATCommands_SampleApps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb) from our website.
+
+   - You have an WiFi access point to connect to the cloud.
 
      
 
@@ -27,9 +29,11 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
    ![](../images/mqtt-aws/Setup.PNG)
 
-  
 
-1. Create a policy
+
+## Steps
+
+1. Login to your AWS IoT Service account and create a policy
 
    - [ ] Navigate to ***Secure->Policies*** and then click ***Create a policy***
 
@@ -37,7 +41,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
    
 
-   - [ ] Create the policy as shown below. This will allow the device to connect and publish MQTT messages.
+   - [ ] Create the policy as shown below. This policy will allow devices (e.g. Sterling EWB) to connect and publish MQTT messages.
 
      ![CreatPolicy2-edit](../images/mqtt-aws/CreatPolicy2-edit.PNG)	
 
@@ -47,7 +51,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
      
 
-2. Create a Thing (i.e. our Sensor)
+2. Create a Thing (i.e. Sterling EWB Sensor that will send MQTT messages)
 
    - [ ] Navigate to ***Manage->Things*** and then click ***Create things***.
 
@@ -101,7 +105,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
      
 
-   - [ ] Copy the endpoint url and save into a textfile. We will need this later when we run our Python sample scripts.
+   - [ ] Copy the endpoint url and save into a textfile. We will need this later when we run our Python sample scripts. It will be use as the hostname.
 
      ![CopyHost3-edit](../images/mqtt-aws/CopyHost3-edit.PNG)
 
@@ -119,7 +123,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
    - [ ] Open a ***cmd prompt*** on the ***ATCommands_SampleApps*** ***examples*** folder
 
-   - [ ] Connect to an AP using the ***join.py*** script
+   - [ ] Connect to an Access Point using the ***join.py*** script
 
      ***join.py -u COM30 -s NameOfYourAP -p YourPassphrase***
 
@@ -140,3 +144,21 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
      ![](../images/mqtt-aws/MsgReceived.PNG)
 
    
+
+## References
+
+- [Sterling EWB Product Page](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module)
+
+- [Sterling EWB AT Command FW](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module#documentation)
+
+- [Python Sample Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb)
+
+- [AT Command Guide](https://www.lairdconnect.com/documentation/command-guide-sterling-ewb)
+
+- [AT Command Quick Start Guide](https://www.lairdconnect.com/documentation/command-quick-start-guide-sterling-ewb)
+
+- [Dev Kit User Guide](https://www.lairdconnect.com/documentation/hardware-dvk-guide-sterling-ewb)
+
+  
+  
+  
