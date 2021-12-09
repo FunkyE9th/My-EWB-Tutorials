@@ -87,7 +87,7 @@ Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as show
 
      
 
-     Rename the downloaded MySensor certificate as ***MySensor.pem.crt.*** Rename the public key as ***MySensor.public.pem.key***. Rename the private key as ***MySensor.private.pem.key***. 
+     Rename the downloaded ***MySensor*** certificate as ***MySensor.pem.crt.*** Rename the public key as ***MySensor.public.pem.key***. Rename the private key as ***MySensor.private.pem.key***. 
 
      
 
