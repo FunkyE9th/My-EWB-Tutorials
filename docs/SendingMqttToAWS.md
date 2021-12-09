@@ -25,7 +25,7 @@ This tutorial will show you how to connect the Sterling EWB to an Access Point a
 
 ## Setup
 
-Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as shown below and then connect the other end of the cable to the your Windows PC. Then using Windows device manager determine the com port for the TTK-232-3V3. For this tutorial we will be using ***COM30***.
+Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as shown below and then connect the other end of the cable to the your Windows PC. Then use Windows Device Manager determine the com port for the TTL-232-3V3. For this tutorial, we will use ***COM30***.
 
    ![](../images/mqtt-aws/Setup.PNG)
 
