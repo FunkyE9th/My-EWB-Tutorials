@@ -4,7 +4,7 @@ This tutorial will show you how to connect the Sterling EWB to an Access Point a
 
 ## Required Tools
 
-   - [EWB dev kit](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module) (Part No. **455-00030** or **455-00030**)
+   - [EWB dev kit](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module) (Part No. **455-00030** or **455-00031**)
    - [TTL-232R-3V3](https://ftdichip.com/products/ttl-232r-3v3/) USB to UART Cable
    - Windows PC
    - WiFi Access Point
