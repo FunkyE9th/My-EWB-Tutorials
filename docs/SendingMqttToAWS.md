@@ -5,7 +5,7 @@ This tutorial will show you how to connect the Sterling EWB to an Access Point a
 ## Required Tools
 
    - [EWB dev kit](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module) (Part No. **455-00030** or **455-00030**)
-   - [TTL-2323-3V3](https://ftdichip.com/products/ttl-232r-3v3/) USB to UART Cable
+   - [TTL-232R-3V3](https://ftdichip.com/products/ttl-232r-3v3/) USB to UART Cable
    - Windows PC
    - WiFi Access Point
 
@@ -25,7 +25,7 @@ This tutorial will show you how to connect the Sterling EWB to an Access Point a
 
 ## Setup
 
-Supply power to the dev kit via J24. Connect the TTL-232-3V3 cable to J7 as shown below and then connect the other end of the cable to the your Windows PC. Then use Windows Device Manager determine the com port for the TTL-232-3V3. For this tutorial, we will use ***COM30***.
+Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as shown below and then connect the other end of the cable to the your Windows PC. Then use Windows Device Manager determine the com port for the TTL-232R-3V3. For this tutorial, we will use ***COM30***.
 
    ![](../images/mqtt-aws/Setup.PNG)
 
