@@ -11,7 +11,7 @@ This tutorial will show you how to connect the Sterling EWB to an Access Point a
 
 ## Prerequisites
 
-   - You have flashed the [AT Command FW](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module#documentation) into the Sterling EWB dev kit. 
+   - You have flashed the [AT Command Firmware](https://www.lairdconnect.com/wireless-modules/wifi-modules-bluetooth/sterling-ewb-iot-module#documentation) into the Sterling EWB dev kit. To flash the firmware, simply download it from our website, connect to J24 of the dev kit, and then run the ***flash_AT.bat*** file included with the firmware.
 
    - You have an AWS account with IoT Core Service.
 
@@ -41,7 +41,7 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
 
    
 
-   - [ ] Create the policy as shown below. This policy will allow devices (e.g. Sterling EWB) to connect and publish MQTT messages.
+   - [ ] Create the policy as shown below. For ***Action*** enter ***iot: Connect, iot:Publish***.  For ***Resource ARN*** enter *****.  For ***Effect*** select ***Allow***. This policy will allow devices (e.g. Sterling EWB) to connect and publish MQTT messages.
 
      ![CreatPolicy2-edit](../images/mqtt-aws/CreatPolicy2-edit.PNG)	
 
@@ -81,7 +81,7 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
 
      
 
-   - [ ] Download the ***MySensor*** certificate, public and private keys, and the ***Amazon Root CA certificates*** into the ***examples*** folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb).
+   - [ ] Download the ***MySensor*** certificate, public and private keys, and the ***Amazon Root CA certificates*** into the ***examples*** folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb). Note, for this tutorial, we really just need the ***MySensor*** certificate and private keys, but you might as well download all the certificates and keys in case you need it in the future.
 
      ![](../images/mqtt-aws/CreatThing6-edit.png)
 
@@ -125,15 +125,15 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
 
    - [ ] Connect to an Access Point using the ***join.py*** script
 
-     ***join.py -u COM30 -s NameOfYourAP -p YourPassphrase***
+     `join.py -u COM30 -s NameOfYourAP -p YourPassphrase`
 
    - [ ] Load the ***MySensor*** certifcate and private key into the EWB with the ***client_cert.py*** script
 
-     ***client_cert.py -u COM30 --cert MySensor.pem.crt --key MySensor.private.pem.key***
+     `client_cert.py -u COM30 --cert MySensor.pem.crt --key MySensor.private.pem.key`
 
    - [ ] Send a message with the ***mqtt.py*** script
 
-     ***mqtt.py -u COM30 -p 8883 --host TheEndPointURLYouCopiedFromStep3 --ssl NoVerifyHost --topic test/topic --body Hello***
+     `mqtt.py -u COM30 -p 8883 --host TheEndPointURLYouCopiedFromStep3 --ssl NoVerifyHost --topic test/topic --body Hello`
 
      ![CmdPrompt-Edit](../images/mqtt-aws/CmdPrompt-Edit.PNG)
 
