@@ -25,7 +25,7 @@ This tutorial will show you how to connect the Sterling EWB to an Access Point a
 
 ## Setup
 
-Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as shown below and then connect the other end of the cable to the your Windows PC. Then use Windows Device Manager determine the com port for the TTL-232R-3V3. For this tutorial, we will use ***COM30***.
+Supply power to the development board via J24. Connect the TTL-232R-3V3 cable to J7 as shown below and then connect the other end of the cable to the your Windows PC. Then use Windows Device Manager determine the COM port for the TTL-232R-3V3. For this tutorial, we will use ***COM30***.
 
    ![](../images/mqtt-aws/Setup.PNG)
 
@@ -33,9 +33,9 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
 
 ## Steps
 
-1. Login to your AWS IoT Service account and create a policy
+1. Login to your AWS IoT Service account and create a policy.
 
-   - [ ] Navigate to ***Secure->Policies*** and then click ***Create a policy***
+   - [ ] Navigate to ***Secure->Policies*** and then click ***Create a policy***.
 
      ![CreatPolicy1-edit](../images/mqtt-aws/CreatPolicy1-edit.PNG)
 
@@ -51,7 +51,7 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
 
      
 
-2. Create a Thing (i.e. Sterling EWB Sensor that will send MQTT messages)
+2. Create a Thing (i.e. Sterling EWB Sensor that will send MQTT messages).
 
    - [ ] Navigate to ***Manage->Things*** and then click ***Create things***.
 
@@ -59,29 +59,29 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
 
      
 
-   - [ ] Select ***Create single thing*** and then click ***Next***
+   - [ ] Select ***Create single thing*** and then click ***Next***.
 
      ![](../images/mqtt-aws/CreatThing2-edit.PNG)
 
      
 
-   - [ ] Name the ***Thing*** as ***MySensor*** and then click ***Next***
+   - [ ] Name the ***Thing*** as ***MySensor*** and then click ***Next***.
 
      ![CreatThing3-edit](../images/mqtt-aws/CreatThing3-edit.PNG)	
 
-   - [ ] Select ***Auto-generate a certificate*** and then click ***Next*** 
+   - [ ] Select ***Auto-generate a certificate*** and then click ***Next***.
 
      ![](../images/mqtt-aws/CreatThing4-edit.png)
 
      
 
-   - [ ] Attach the policy that we created to ***MySensor*** by selecting ***MyPolicy*** and then click ***Create thing***
+   - [ ] Attach the policy that we created to ***MySensor*** by selecting ***MyPolicy*** and then click ***Create thing***.
 
      ![CreatThing5-edit](../images/mqtt-aws/CreatThing5-edit.PNG)
 
      
 
-   - [ ] Download the ***MySensor*** certificate, public and private keys, and the ***Amazon Root CA certificates*** into the ***examples*** folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb). Note, for this tutorial, we really just need the ***MySensor*** certificate and private keys, but you might as well download all the certificates and keys in case you need it in the future.
+   - [ ] Download the ***MySensor*** certificate, public and private keys, and the ***Amazon Root CA certificates*** into the ***examples*** folder of the [Python Samples Apps](https://www.lairdconnect.com/documentation/command-set-python-sample-applications-sterling-ewb). Note, for this tutorial, we really just need the ***MySensor*** certificate and private keys, but you may download all the certificates and keys in case you need them in the future.
 
      ![](../images/mqtt-aws/CreatThing6-edit.png)
 
@@ -97,15 +97,15 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
 
      
 
-3. Copy and save hostname/endpoint into a textfile
+3. Copy and save hostname/endpoint into a textfile.
 
-   - [ ] Select the ***Interact*** tab and then click ***View Settings***
+   - [ ] Select the ***Interact*** tab and then click ***View Settings***.
 
      ![CopyHost1-edit](../images/mqtt-aws/CopyHost2-edit.png)
 
      
 
-   - [ ] Copy the endpoint url and save into a textfile. We will need this later when we run our Python sample scripts. It will be use as the hostname.
+   - [ ] Copy the endpoint url and save into a textfile. We will need this later when we run our Python sample scripts. It will be used as the hostname.
 
      ![CopyHost3-edit](../images/mqtt-aws/CopyHost3-edit.PNG)
 
@@ -119,27 +119,25 @@ Supply power to the dev kit via J24. Connect the TTL-232R-3V3 cable to J7 as sho
    
    
    
-5. Send MQTT messages from the EWB
+5. Send MQTT messages from the EWB.
 
-   - [ ] Open a ***cmd prompt*** on the ***ATCommands_SampleApps*** ***examples*** folder
+   - [ ] Open a ***cmd prompt*** on the ***ATCommands_SampleApps*** ***examples*** folder.
 
-   - [ ] Connect to an Access Point using the ***join.py*** script
+   - [ ] Connect to an access point using the ***join.py*** script.
 
      `join.py -u COM30 -s NameOfYourAP -p YourPassphrase`
 
-   - [ ] Load the ***MySensor*** certifcate and private key into the EWB with the ***client_cert.py*** script
+   - [ ] Load the ***MySensor*** certifcate and private key into the EWB with the ***client_cert.py*** script.
 
      `client_cert.py -u COM30 --cert MySensor.pem.crt --key MySensor.private.pem.key`
 
-   - [ ] Send a message with the ***mqtt.py*** script
+   - [ ] Send a message with the ***mqtt.py*** script.
 
      `mqtt.py -u COM30 -p 8883 --host TheEndPointURLYouCopiedFromStep3 --ssl NoVerifyHost --topic test/topic --body Hello`
 
      ![CmdPrompt-Edit](../images/mqtt-aws/CmdPrompt-Edit.PNG)
 
-   
-
-   - [ ] Hello message received on the AWS MQTT Test Client
+   - [ ] The hello message is received on the AWS MQTT Test Client.
 
      ![](../images/mqtt-aws/MsgReceived.PNG)
 
